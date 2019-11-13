@@ -154,8 +154,7 @@ class Problem10(Problem):
                 keepInsertie.append(subset)
 
         solution += "\na)Selectia maximului."
-        solution += "\nVectorul " + " ".join(map(str, self.data[0])) + " s-a obtinut dupa " + str(
-            nrPasiUnu) + " pasi din sortare.\n"
+        solution += "\nVectorul " + " ".join(map(str, self.data[0])) + " s-a obtinut dupa " + str(nrPasiUnu) + " pasi din sortare.\n"
 
 
         solution += "\n\nPentru selectia maximului am gasit " + str(
@@ -202,8 +201,7 @@ class Problem10(Problem):
             nrPasiDoi) + " pasi din sortare.\n"
 
 
-        solution += "\n\nPentru selectia minimului am gasit " + str(
-            len(keepMinim)) + " subseturi de lungime " + str(nrPasiDoi) + " : "
+        solution += "\n\nPentru selectia minimului am gasit " + str(len(keepMinim)) + " subseturi de lungime " + str(nrPasiDoi) + " : "
 
         for subset in keepMinim:
             solution += "["
@@ -244,8 +242,7 @@ class Problem10(Problem):
                 solution += " ] "
 
         solution += "\n\nc)Insertie:"
-        solution += "\nVectorul " + " ".join(map(str, self.data[0])) + " s-a obtinut dupa " + str(
-            nrPasiTrei) + " pasi din sortare.\n"
+        solution += "\nVectorul " + " ".join(map(str, self.data[0])) + " s-a obtinut dupa " + str(nrPasiTrei) + " pasi din sortare.\n"
 
 
         solution += "\n\nPentru insertie am gasit " + str(len(keepInsertie)) + " subseturi care respecta cerinta : "
@@ -274,7 +271,7 @@ class Problem10(Problem):
                 min3 = len(arrInsertie)
                 minimSterse3 = arrInsertie
         if (min3 == 0):
-            solution += "Primele " + str(nrPasiTrei) + 1 + " respecta cerinta.\n"
+            solution += "Primele " + str(nrPasiTrei + 1) + " respecta cerinta.\n"
         else:
             if min3 ==len(v):
                 solution += "Nu s-a gasit nici o solutie pentru a se executa " +str(nrPasiTrei) + " pasi din algoritmul de insertie directa"
