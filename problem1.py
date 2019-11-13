@@ -198,8 +198,3 @@ class Problem1(Problem):
             solutie += "\nElementele stivei 2 sunt:\n" + str(stack2.v)
             solutie += "\nSecventa de operatii este: " + sol
             return solutie
- 
- 
-p = Problem1()
-print(p.statement)
-print(p.solve())
