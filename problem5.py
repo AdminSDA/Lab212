@@ -84,8 +84,3 @@ class Problem5(Problem):
                     solution += "Stiva devine" + str(stiva) + ", prima coada devine:" + str(coada1) + ", a doua coada devine:" + str(coada2) + "\n"
                     solution += "\n"
         return solution
-
-
-p = Problem1()
-print(p.statement)
-print(p.solve())
