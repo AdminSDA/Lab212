@@ -194,7 +194,5 @@ class Problem5(Problem):
         return solution
 
 
-problem = ProblemABC()
-print(problem.solve())
 
 # returnez tot intr-o var solution + idee de rezolvare
