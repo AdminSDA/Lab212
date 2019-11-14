@@ -60,55 +60,83 @@ class Problem3(Problem):
         super().__init__(statement, data)
 
 
+    # def solve(self):
+        # a = self.data[0]
+        # b = self.data[1]
+        # n = len(a)
+        # nrp = 0
+        # nr = 0
+        # i = 0
+        # j = 0
+        # m = 0
+        # operatii = ""
+        # s = []  # stiva
+
+        # solution = "Idee de rezolvare: Comparam elementele din vetorul a cu elementul selectat din vectorul b.\n"
+        # solution += "Selectam " + str(b[0]) + " primul element din b. Parcurgem a pana gasim un element egal cu " + str(b[0]) + "\n"
+
+        # while j != n:
+            # if nr != n:
+                # if a[i] != b[j]:
+                    # operatii +='n '
+                    # solution += a[i] + " este diferit de elementul curent din," + str(b[j]) + ". In stiva introducem numarul " + \
+                                # a[i] + "\n"
+                    # nr += 1
+                    # m += 1
+                    # s.append(a[i])
+                    # i += 1
+            # else:
+                # solution += a[i] + " este  egal cu elementul curent din b," + str(b[j]) + ".\n"
+                # solution += "Verificam daca am ajuns in capetele lui a, respectiv sfarsitul lui b.\n"
+                # if j < n - 1 and i > 0 and i < n - 1:
+                    # solution += "Nu trebuie sa fim in capetele lui a, respectiv sfarsitul lui b.\n"
+                    # if a[i - 1] != b[j + 1] and a[i + 1] != b[j + 1] and s[-1] != b[j + 1]:
+                        # solution += "Elementele dinainte si de dupa " + a[i] + " si ultimul element din stiva," + s[
+                            # m] + ",sunt diferite de " + b[j + 1] + ".\n"
+                        # solution += "Ne oprim.\n"
+                        # operatii = "Nu se poate poate"
+                        # j = n
+                    # else:
+                        # operatii +='n '
+                        # nr += 1
+                        # operatii +='p '
+                        # nrp += 1
+                        # j += 1
+                        # if s[m] == b[j]:
+                            # while len(s) > 0 and s[-1] == b[j]:
+                                # operatii +='p '
+                                # nrp += 1
+                                # j += 1
+                                # m -= 1
+                        # i += 1
+                        
+        # print(operatii)
+        # return solution   
+
     def solve(self):
-        a = self.data[0]
-        b = self.data[1]
-        n = len(a)
-        nrp = 0
-        nr = 0
-        i = 0
-        j = 0
-        m = 0
-        operatii = ""
-        s = []  # stiva
-
-        solution = "Idee de rezolvare: Comparam elementele din vetorul a cu elementul selectat din vectorul b.\n"
-        solution += "Selectam " + b[0] + " primul element din b. Parcurgem a pana gasim un element egal cu " + b[0] + "\n"
-
-        while j != n:
-            if nr != n:
-                if a[i] != b[j]:
-                    operatii.append('n ')
-                    solution += a[i] + " este diferit de elementul curent din," + b[j] + ". In stiva introducem numarul " + \
-                                a[i] + "\n"
-                    nr += 1
-                    m += 1
-                    s.append(a[i])
-                    i += 1
-            else:
-                solution += a[i] + " este  egal cu elementul curent din b," + b[j] + ".\n"
-                solution += "Verificam daca am ajuns in capetele lui a, respectiv sfarsitul lui b.\n"
-                if j < n - 1 and i > 0 and i < n - 1:
-                    solution += "Nu trebuie sa fim in capetele lui a, respectiv sfarsitul lui b.\n"
-                    if a[i - 1] != b[j + 1] and a[i + 1] != b[j + 1] and s[m] != b[j + 1]:
-                        solution += "Elementele dinainte si de dupa " + a[i] + " si ultimul element din stiva," + s[
-                            m] + ",sunt diferite de " + b[j + 1] + ".\n"
-                        solution += "Ne oprim.\n"
-                        operatii = "Nu se poate poate"
-                        j = n + 2
-                    else:
-                        operatii.append('n ')
-                        nr += 1
-                        operatii.append('p ')
-                        nrp += 1
-                        j += 1
-                        if s[m] == b[j]:
-                            while s[m] == b[j]:
-                                operatii.append('p ')
-                                nrp += 1
-                                j += 1
-                                m -= 1
-                        i += 1
-        print(operatii)
-        return solution
-
+        print('-'*20)
+        a=self.data[0]
+        b=self.data[1]
+        operatii=""
+        s = []
+        solution=""
+        solution += "Idee de rezolvare: Luam fiecare element din vectorul a si il introducem in stiva s.\n"
+        solution +="Daca stiva nu este goala si ultimul element din stiva este egal cu elementul de pe pozitia i din b, atunci il scoatem,afisam p si trecem mai departe in b.\n"
+        solution+="Cat timp stiva nu e vida si ultimul element din stiva este egal cu elementul curent din b \n"
+        i=0
+        for lit in a:
+            s.append(lit)
+            operatii+='n '
+            solution+= "\tAdaugam n la operatii si adaugam elementul "+ str(lit) + " in stiva\n"
+            
+            while len(s)>0 and s[-1] == b[i]:
+                solution+="\tAdaugam p la operatii si scoatem elementul " + str(s[-1]) + " din stiva\n"
+                operatii+='p '
+                del s[-1]
+                i+=1
+        if len(s)>0:
+            operatii="Nu se poate"
+        else:
+            solution+= 'Operatiirle necesare aplicate:\n'
+        solution+=operatii
+        return  solution;
