@@ -304,7 +304,7 @@ class Problema10(Problem):
                 min3 = len(arrInsertie)
                 minimSterse3 = arrInsertie
         if (min3 == 0):
-            solution += "RASPUNS: Primele " + str(nrPasiTrei) + 1 + " respecta cerinta.\n"
+            solution += "RASPUNS: Primele " + str(nrPasiTrei + 1) + " respecta cerinta.\n"
         else:
             if min3 ==len(v):
                 solution += "\nRASPUNS: Nu s-a gasit nici o solutie pentru a se executa " +str(nrPasiTrei) + " pasi din algoritmul de insertie directa"
