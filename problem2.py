@@ -6,7 +6,7 @@ class Problem2(Problem):
 
         import random
 
-        data1 = random.sample(range(97, 123), random.randint(7, 10) ) # generam un sir de 5-8 numere din intervalul 97-123 (a-z,lowercase,ASCII)
+        data1 = random.sample(range(97, 123), random.randint(7, 10) ) # generam un sir de 7-10 numere din intervalul 97-123 (a-z,lowercase,ASCII)
         for i in range(0,len(data1)):
             data1[i]=chr(data1[i]) # convertim numerele in echivalentul lor din codul ASCII
 
