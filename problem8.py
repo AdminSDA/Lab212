@@ -204,6 +204,6 @@ class Problem8(Problem):
         return solution
 
 
-p = Problem8()
-print(p.statement)
-print(p.solve())
+#p = Problem8()
+#print(p.statement)
+#print(p.solve())
