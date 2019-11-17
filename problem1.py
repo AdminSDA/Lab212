@@ -7,7 +7,7 @@ def random_string_generator(str_size, allowed_chars):
     return ''.join(random.choice(allowed_chars) for x in range(str_size))
 
 
-class Tema1(Problem):
+class Problem1(Problem):
     def __init__(self):
         chars = string.ascii_letters
         size1 = random.randrange(1, 10)
