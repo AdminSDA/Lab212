@@ -7,22 +7,7 @@ class Problem9(Problem):
         pasi_selection = random.randint(2, 4)
         pasi_insertion = random.randint(2, 4)
         data = random.sample(range(100), random.randint(6, 10))
-        x = random.randint(0,2)
-        y = random.randint(0,2)
-
-        pivot = -1
-        if y == 0:
-            max = data[0]
-            m = 0
-            for i in range (1,len(data)):
-                if data[i] > max:
-                    max = data[i]
-                    m = i
-            data[m], data[len(data)-1] = data[len(data)-1], data[m]
-            pivot = data[len(data)-1]
-
-        if pivot == -1:
-            pivot = random.choice(data)
+        x = random.randint(0, 2)
 
         # 33% din cazuri ne asiguram ca prima cerinta e adevarata
         reverse = True
@@ -38,14 +23,36 @@ class Problem9(Problem):
             while reverse:
                 reverse = False
                 for i in range(0, pasi_insertion):
-                    if data[i -1] > data[i]:
+                    if data[i - 1] > data[i]:
                         data[i], data[i - 1] = data[i - 1], data[i]
                         reverse = True
+
+        # incercam sa alegem un pivot bun
+        n = len(data)
+        for k in range(0, n):
+            ok1 = 1
+            ok2 = 1
+            pivot = data[k]
+            poz_pivot = k
+            for i in range(0, poz_pivot):
+                if data[i] > pivot:
+                    ok1 = 0
+                    break
+            for j in range(poz_pivot + 1, n):
+                if data[j] < pivot:
+                    ok2 = 0
+                    break
+            if ok1 == 1 and ok2 == 1:
+                break
+            else:
+                pivot = -1
+
+        if pivot == -1:
+            pivot = random.choice(data)
 
         statement = 'Problema 9: Se primesc numerele: ' + ', '.join(map(str, data)) + '.\n'
         statement += 'Raspundeti cu adevarat sau fals:\n'
         data = [data, pivot]
-
 
         data = [data, pasi_selection]
         statement += '1. Vectorul a rezultat in urma aplicarii a ' + str(pasi_selection) + ' pasi din Selection Sort (Maxim).\n'
@@ -138,32 +145,32 @@ class Problem9(Problem):
         solution += 'i.Vectorul are ' + str(n) + ' elemente \n'
         reverse = True
         solution += 'ii.Cat timp facem interschimbari = > nu am terminat \n'
+        k = 0
         while reverse == True:
+            solution += str(k) + ': ' + str(data) + '\n'
+            k = k + 1
             reverse = False
             for i in range(0, n - 1):
                 if data[i + 1] < data[i]:
                     data[i], data[i + 1] = data[i + 1], data[i]
-                    solution += str(data[i + 1]) + ' < ' + str(data[i]) + ' => elementele nu sunt sortate asa ca vom face o interschimbare \n'
                     reverse = True
-        solution += 'iii.' + str(data) + '\n\n'
+        solution += '\n'
 
         # selection sort (maxim)
         solution += '5.Exemplificam Selection Sort(Maxim): \n'
         n = len(data2)
         solution += 'i.Vectorul are ' + str(n) + ' elemente \n'
+        k = 0
         for i in range(0, n):
+            solution += str(k) + ': ' + str(data2) + '\n'
+            k = k + 1
             poz_max = i
             elem_max = data2[i]
-            solution += 'ii. poz_max = ' + str(i + 1) + ' max = ' + str(elem_max) + ' \n'
             for j in range(i, n):
                 if data2[j] > elem_max:
-                    solution += str(data2[j]) + ' > ' + str(elem_max) + ' => max =' + str(data2[j]) + '\n'
                     elem_max = data2[j]
                     poz_max = j
             data2[i], data2[poz_max] = data2[poz_max], data2[i]
-            if i != poz_max:
-                solution += 'iii. '
-                solution +=  str(data2[i]) + ' se interschimba cu ' + str(data2[poz_max]) + '\n'
-        solution += 'iv. ' + str(data2) + '\n \n'
+        solution += '\n'
 
         return solution
