@@ -4,7 +4,7 @@ from itertools import chain, combinations
 import collections
 
 
-class Problema10(Problem):
+class Problem10(Problem):
     def __init__(self):
 
         n = random.randint(8, 12)
