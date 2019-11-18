@@ -5,35 +5,35 @@ import random
 class Problem11(Problem):
     def __init__(self):
 
-
-        ls = random.randint(1,5)
-
-        if ls == 1:
+        ls = random.randint(1, 5)
+        if ls == 1: #20% din cazuri, pivot de valoare medie cu elemente mai mare in stanga si mai mici in dreapta
             data = random.sample(range(100),random.randint(5, 9))  # din numerele mai mici decat 100, alegem intre 5 si 9
             pivot = random.choice(data)
             data = [data, pivot]
             sir = data[0]  # retin sirul generat din numere la intamplare in sir
             u = len(sir)  # lungimea sirului, in cazul nostru este len(sir)
             p = 0
-            v = [0 for i in range(1,101)]
+            v = [0 for i in range(1,101)] #vector caracteristic care are aparitia fiecarui numar din sir  = 0
             nr = 0
             piv = 0
             for i in range(p, u - 1):
-                v[sir[i]] = 1
+                v[sir[i]] = 1 #marchez toate elementele care apar in sir
             for i in range(0, 99):
                 if v[i] == 1:
                     nr = nr + 1
                     if nr == u//2:
-                        piv = i
+                        piv = i #iau elementul de valoare medie ca pivot
                         break
-            portie = sir.index(piv)
-            sir[portie], sir[u - 1] = sir[u - 1], sir[portie]
+            data[1] = piv
             i = p - 1
-            for j in range(p, u):
+            for j in range(p, u): #fac parcurgerea sa pun elementele mai mari decat pivotul in stanga si cele mai mici in dreapta
                 if sir[j] > piv:
-                    i = i + 1  # daca valoarea elementului este mai mica decat cea a pivotului, crestem valoarea indexului i
+                    i = i + 1  # daca valoarea elementului este mai mare decat cea a pivotului, crestem valoarea indexului i
                     sir[i], sir[j] = sir[j], sir[i]
-
+            for i in range(p, u):
+                if sir[i] < piv:
+                    break
+            sir[i - 1], sir[sir.index(piv)] = sir[sir.index(piv)], sir[i - 1] #pun pivotul in mijlocul sirului
             statement = "11. Partitionati Lomuto urmatorul vector: " + str(sir) + " folosind pivotul: " + str(
                 piv) + "\n"
 
@@ -76,8 +76,3 @@ class Problem11(Problem):
         sir[i + 1], sir[u - 1] = sir[u - 1], sir[i + 1]  # adresa i+1 este adresa corecta a pivotului, deci interschimbam cele doua elemente
         solution += "Am ajuns la capatul sirului. In final, avem vectorul partitionat: " + str(sir)
         return solution
-
-
-
-
-
