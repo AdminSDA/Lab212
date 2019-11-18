@@ -26,7 +26,7 @@ class Problem11(Problem):
                     if nr == u//2:
                         piv = i
                         break
-            portie = nr
+            portie = sir.index(piv)
             sir[portie], sir[u - 1] = sir[u - 1], sir[portie]
             i = p - 1
             for j in range(p, u):
