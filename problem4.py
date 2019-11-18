@@ -2,7 +2,7 @@ from problem import Problem
 import random
 from random import randint
 
-class Problem1(Problem):
+class Problem4(Problem):
     def __init__(self):
         statement = 'SS. Avand stiva: '
         data = []
