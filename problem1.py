@@ -4,7 +4,7 @@ from collections import deque
  
  
  
-class Tema1(Problem):
+class problem1(Problem):
     def __init__(self):
          A = range(3)
          sum = 3
