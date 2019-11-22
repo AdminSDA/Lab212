@@ -4,11 +4,11 @@ from collections import deque
  
  
  
-class Problem1(Problem):
+class Tema1(Problem):
     def __init__(self):
-     A = range(3)
-     sum = 3
- v = [random.choice(A) for _ in range(sum)]
+         A = range(3)
+         sum = 3
+        v = [random.choice(A) for _ in range(sum)]
         data1 = ["Mama", "Tata", "Mihai"]
         data2 = ["merge", "alearga", "fuge"]
         data3 = ["acasa", "repede", "mult"]
@@ -198,3 +198,6 @@ class Problem1(Problem):
             return solutie
  
  
+p = Tema1()
+print(p.statement)
+print(p.solve())
