@@ -28,7 +28,7 @@ class problem1(Problem):
         data = data1 + ' ' + data2 + ' ' + data3
         super().__init__(statement, data)
 
-	def solve(self):
+    def solve(self):
         # implementare stiva
         class Stack:
             def __init__(self):
@@ -197,7 +197,3 @@ class problem1(Problem):
             solutie += "\nElementele stivei 2 sunt:\n" + str(stack2.v)
             return solutie
  
- 
-p = Tema1()
-print(p.statement)
-print(p.solve())
