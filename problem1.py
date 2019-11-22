@@ -6,8 +6,8 @@ from collections import deque
  
 class problem1(Problem):
     def __init__(self):
-         A = range(3)
-         sum = 3
+        A = range(3)
+        sum = 3
         v = [random.choice(A) for _ in range(sum)]
         data1 = ["Mama", "Tata", "Mihai"]
         data2 = ["merge", "alearga", "fuge"]
