@@ -56,50 +56,45 @@ class Problem12(Problem):
 
         v = [0] * n  # vector de vizite
         v2 = [0] * n  # vector de tati
+        v1 = [0] * n  # vector de verificare pentru tati in crearea lui v2
 
-        radin = random.randrange(1, n)
+        radin = random.randrange(0, n - 1)
         k1 = n
-        v2[radin] = 100
-
         k1 = k1 - 1
+        t = 0
+        for i in range(0, n):
+            v1[i] = -2
+        for i in range(0, n):
+            v2[i] = -2
+        v2[radin] = 100
         # in acest while se umple random vectorul de tati
-        test = 0
-        while k1:
-            nivel = random.randint(0, k1 - 1)
-            for i in range(n):
-                if v2[i]:
+        while k1 and (t < 30):
+            t = t + 1
+            nivel = random.randint(1, 4)
+            if nivel > k1:
+                nivel = random.randint(0, k1)
+            for i in range(0, n):
+                if (v2[i] != -2) and (v1[i] == -2):
                     r = i
-            i = random.randint(1, n - 1)
+                    v1[i] = 1
+                    break
+            i = random.randint(0, n - 1)
             while nivel != 0:
-                while v2[i] != 0 and k1 != 0:
-                    i = random.randint(1, n - 1)
+                while v2[i] != -2 and k1 != 0:
+                    i = random.randint(0, n - 1)
                 v2[i] = r
                 nivel = nivel - 1
                 k1 = k1 - 1
-            if k1 == 1:
-                test = test + 1
-            if test == 2:
-                k1 = 0
 
-        for i in range(n):
-            k = random.randint(1, n)
-            while k == i:
-                k = random.randint(1, n)
-            if v2[i] == 0:
-                v2[i] = k
-
-        for i in range(n - 1):
-            if v2[i] != 100:
-                if (v2[i] == v2[i + 1]) and (random.randrange(2) % 2) != 0:
-                    v2[i + 1] = i
-
-        v2[radin] = 0
+        v2[radin] = -1
 
         r = radin
         data = []
         # in acest while fac DF continuu
 
-        while vrvz(v, n):
+        t = 0
+        while vrvz(v, n) and (t < 30):
+            t = t + 1
             ok = 0
             data.append(r)
             v[r] = 1
@@ -112,11 +107,14 @@ class Problem12(Problem):
             if not ok:
                 r = v2[r]
 
-        if r > n - 1:
-            r = r - 1
-        while (v2[r] != radin) and (v2[r] != 0):
+        t = 0
+
+        while (v2[r] != radin) and (v2[r] != -1):
+            t = t + 1
             data.append(r)
             r = v2[r]
+            if t > 30:
+                break
 
         data.append(r)
         if r != radin:
