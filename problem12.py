@@ -61,13 +61,15 @@ class Problem12(Problem):
         radin = random.randrange(0, n - 1)
         k1 = n
         k1 = k1 - 1
+        t = 0
         for i in range(0, n):
             v1[i] = -2
         for i in range(0, n):
             v2[i] = -2
         v2[radin] = 100
         # in acest while se umple random vectorul de tati
-        while k1:
+        while k1 and (t < 30):
+            t = t + 1
             nivel = random.randint(1, 4)
             if nivel > k1:
                 nivel = random.randint(0, k1)
@@ -90,7 +92,9 @@ class Problem12(Problem):
         data = []
         # in acest while fac DF continuu
 
-        while vrvz(v, n):
+        t = 0
+        while vrvz(v, n) and (t < 30):
+            t = t + 1
             ok = 0
             data.append(r)
             v[r] = 1
@@ -103,9 +107,14 @@ class Problem12(Problem):
             if not ok:
                 r = v2[r]
 
+        t = 0
+
         while (v2[r] != radin) and (v2[r] != -1):
+            t = t + 1
             data.append(r)
             r = v2[r]
+            if t > 30:
+                break
 
         data.append(r)
         if r != radin:
@@ -116,7 +125,11 @@ class Problem12(Problem):
         super().__init__(statement, data)
 
     def solve(self):
-        solution = '12. Solutia problemei: \n'
+        solution = '12. Idee de rezolvare: Construim vectorul tata asociat arborelui.\n'
+        solution += 'Parcurgem numerele date de la stanga la dreapta.\n' \
+                    'Primul numar din parcurgere este radacina si are tatal -1.\n' \
+                    'Tatal unui numar gasit pentru prima data este precedentul sau.\n' \
+                    'Daca elementul a mai fost intalnit trecem mai departe.\n'
         data = self.data
 
         n = data[1]
@@ -124,12 +137,16 @@ class Problem12(Problem):
         data = data[0].copy()
         print(data)
 
+        nod=list(range(0,n))
         tata = [-1] * n
+
         fii = [[0 for x in range(n)] for y in range(n)]
         i = 1
         rad = data[0]
+        solution += str(rad) + " este radacina.\n"
         while i < len(data):
             if tata[data[i]] == -1 and data[i] != rad:
+                solution += str(data[i]) + " nevizitat => " + str(data[i-1]) + " = tatal \n"
                 tata[data[i]] = data[i - 1]  # la afisare tatal lui data[i] este data[i-1]
                 fii[data[i - 1]][data[i]] = 1
                 i = i + 1
@@ -140,7 +157,7 @@ class Problem12(Problem):
                         if data[i] == rad:
                             i = i + 1
                         if i >= len(data):
-                            break
+                           break
                 else:
                     i = i + 1
 
@@ -149,5 +166,6 @@ class Problem12(Problem):
                 afisare(i, 0, fii, n)
                 solution += afis
                 break
-        solution += "\nVectorul de tati: " + str(tata)  # in loc de vectorul tata trebuie afisat arborele
+        print(afis)
+        solution += "Vectorul de tati este " + str(tata)
         return solution
