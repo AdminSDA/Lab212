@@ -166,6 +166,6 @@ class Problem12(Problem):
                 afisare(i, 0, fii, n)
                 solution += afis
                 break
-        print(afis)
+        print('\n')
         solution += "Vectorul de tati este " + str(tata)
         return solution
