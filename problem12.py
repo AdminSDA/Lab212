@@ -61,15 +61,13 @@ class Problem12(Problem):
         radin = random.randrange(0, n - 1)
         k1 = n
         k1 = k1 - 1
-        t = 0
         for i in range(0, n):
             v1[i] = -2
         for i in range(0, n):
             v2[i] = -2
         v2[radin] = 100
         # in acest while se umple random vectorul de tati
-        while k1 and (t < 30):
-            t = t + 1
+        while k1:
             nivel = random.randint(1, 4)
             if nivel > k1:
                 nivel = random.randint(0, k1)
@@ -92,9 +90,7 @@ class Problem12(Problem):
         data = []
         # in acest while fac DF continuu
 
-        t = 0
-        while vrvz(v, n) and (t < 30):
-            t = t + 1
+        while vrvz(v, n):
             ok = 0
             data.append(r)
             v[r] = 1
@@ -107,14 +103,9 @@ class Problem12(Problem):
             if not ok:
                 r = v2[r]
 
-        t = 0
-
         while (v2[r] != radin) and (v2[r] != -1):
-            t = t + 1
             data.append(r)
             r = v2[r]
-            if t > 30:
-                break
 
         data.append(r)
         if r != radin:
@@ -158,6 +149,5 @@ class Problem12(Problem):
                 afisare(i, 0, fii, n)
                 solution += afis
                 break
-        print(afis)
-        solution += "Vectorul de tati: " + str(tata)  # in loc de vectorul tata trebuie afisat arborele
+        solution += "\nVectorul de tati: " + str(tata)  # in loc de vectorul tata trebuie afisat arborele
         return solution
