@@ -156,7 +156,7 @@ class Problem12(Problem):
                         if data[i] == rad:
                             i = i + 1
                         if i >= len(data):
-                           break
+                            break
                 else:
                     i = i + 1
 
