@@ -1,3 +1,4 @@
+
 from problem import Problem
 sdr = []
 index = 0
@@ -108,7 +109,7 @@ class Problem13(Problem):
         solution += "Deoarece deja stim ca se cere un Arbore Binar de Cautare, fixam ultimul element din parcurgere ca fiind radacina si o impartim in doua intervale: \n"
         solution += "\t-prima parte contine numere mai mici decat radacina si setul de elemente va merge in stanga acesteia \n"
         solution += "\t-a doua parte contine numere mai mari decat radacina si setul de elemente va merge in dreapta acesteia \n"
-        solution += "Repetam recursiv pentru fiecare nod.\n"
+        solution += "Repetam recursiv pentru fiecare interval.\n"
         solution += "Arborele construit este:\n\n\n"
         printTree(radacina)
         solution += sol
@@ -119,6 +120,3 @@ class Problem13(Problem):
 
         return solution
 
-p = Problem13()
-print(p.statement)
-print(p.solve())
