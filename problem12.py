@@ -125,11 +125,11 @@ class Problem12(Problem):
         super().__init__(statement, data)
 
     def solve(self):
-        solution = '12. Idee de rezolvare: Construim vectorul tata asociat arborelui.\n'
+        solution = '12. Idee de rezolvare: Construim vectorul tata asociat arborelui.\n\n'
         solution += 'Parcurgem numerele date de la stanga la dreapta.\n' \
                     'Primul numar din parcurgere este radacina si are tatal -1.\n' \
                     'Tatal unui numar gasit pentru prima data este precedentul sau.\n' \
-                    'Daca elementul a mai fost intalnit trecem mai departe.\n'
+                    'Daca elementul a mai fost intalnit trecem mai departe.\n\n'
         data = self.data
 
         n = data[1]
