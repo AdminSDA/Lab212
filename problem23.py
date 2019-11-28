@@ -40,12 +40,12 @@ class Problem23(Problem):
         solution ="Ideea de rezolvare:\n"
         solution +="Aplicam shiftDown pentru nodurile de la [n/2,0] (in ordinea asta).\n"
         solution +="Shiftdown compara recursiv un nod i cu cei 2 copii si se interschimba\n"
-        solution +="cu cel mai mic "+ str(self.data[0]) + " se interschimba cu " + str(self.data[1]) + ""
-        solution +=" si aplicam algoritmul pana ajungem la o frunza.\n"
+        solution +="cu cel mai mic si aplicam algoritmul pana ajungem la o frunza.\n"
 
         n = len(self.data)
         for i in range(int(n / 2), -1, -1):
             self.shiftDown(self.data, n, i)
+            solution +="Dupa pasul " + str((n//2)-i+1) + " sirul nostru arata astfel:\n" +str(self.data) + "\n"
         #return self.data
         solution +="In final vom obtine min-ansamblul: \n"
         solution +="" + str(self.data) + "\n"
