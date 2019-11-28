@@ -137,7 +137,6 @@ class Problem12(Problem):
         data = data[0].copy()
         print(data)
 
-        nod=list(range(0,n))
         tata = [-1] * n
 
         fii = [[0 for x in range(n)] for y in range(n)]
