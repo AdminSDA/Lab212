@@ -1,17 +1,14 @@
 from problem import Problem
 import random
 
-
 def vrvz(vr, n):  # verific daca exista macar vreun fiu nevizitat
     for i in range(n):
         if vr[i] == 0:
             return 1
     return 0
 
-
 COUNT = [10]
 afis = ""
-
 
 def afisare(k, space, fii, n):
     global afis
@@ -46,7 +43,6 @@ def afisare(k, space, fii, n):
                 afis += " "
             afis += str(k)
             afisare(fiu, space, fii, n)
-
 
 class Problem12(Problem):
     def __init__(self):
@@ -166,5 +162,21 @@ class Problem12(Problem):
                 solution += afis
                 break
         solution += '\n'
-        solution += "Vectorul de tati este " + str(tata)
+
+        solution += "Vectorul de tati este " + str(tata) + "\n\n"
+        solution += "Fii nodurilor sunt:\n"
+        nr = range(n)
+        for nod in nr:
+            nr_fii = 0
+            solution += str(nod) + " -> "
+            for i in nr:
+                if nod == tata[i]:
+                    solution += str(i) + "  "
+                    nr_fii = nr_fii + 1
+            print(nr_fii)
+            if nr_fii == 0:
+                solution += "frunza"
+
+            solution += "\n"
+
         return solution
