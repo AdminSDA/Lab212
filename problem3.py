@@ -1,5 +1,6 @@
 from problem import Problem
 
+
 class Problem3(Problem):
     def __init__(self):
 
@@ -25,8 +26,8 @@ class Problem3(Problem):
                 if L < 7:  # probabilitatea in care pica n (60%) sau p (40%)
                     if nrn == len(data):
                         op.append('p')
-                        stack_out.append(
-                            stack.pop())  # scoatem ultimul nr din stiva si il punem in alta stiva in cazul in care pica p
+                        stack_out.append(stack.pop())
+                        # scoatem ultimul nr din stiva si il punem in alta stiva in cazul in care pica p
                         nr -= 1
                     else:
                         op.append('n')
@@ -43,8 +44,8 @@ class Problem3(Problem):
                         nrn += 1
                     else:
                         op.append('p')
-                        stack_out.append(
-                            stack.pop())  # scoatem ultimul nr din stiva si il punem in alta stiva in cazul in care pica p
+                        stack_out.append(stack.pop())
+                        # scoatem ultimul nr din stiva si il punem in alta stiva in cazul in care pica p
                         nr -= 1
             data = [data, stack_out]
         else:
@@ -58,7 +59,6 @@ class Problem3(Problem):
 
         super().__init__(statement, data)
 
-
     def solve(self):
         print('-' * 20)
         a = self.data[0]
@@ -66,7 +66,7 @@ class Problem3(Problem):
         operatii = ""
         s = []
         stiva = []
-        solution = ""
+        solution = " "
         solution += "Idee de rezolvare: Selectam primul element din vectorul b. " \
                     "Luam fiecare element din vectorul a si il introducem in stiva.\n" \
                     "Cat timp stiva nu este goala si ultimul element din stiva este egal cu elementul curent din b, " \
@@ -77,15 +77,15 @@ class Problem3(Problem):
             operatii += str(lit)+" "
             solution += "\tAdaugam " + str(lit) + " la operatii si adaugam elementul " + str(lit) + " in stiva\n"
             stiva.append(str(lit))
-            solution += "<table border=1><tr>"
+            solution += "\t<table border=1><tr>"
             for lit in stiva:
-                 solution += "<td>"+lit+"</td>"
+                solution += "<td>" + lit + "</td>"
             solution += "</tr></table>\n"
 
             while len(s) > 0 and s[-1] == b[i]:
                 solution += "\tAdaugam p la operatii si scoatem elementul " + str(s[-1]) + " din stiva\n"
-                stiva[-1]= "<strike>" + str(s[-1]) + "</strike> "
-                solution += "<table border=1><tr>"
+                stiva[-1] = "<strike>" + str(s[-1]) + "</strike> "
+                solution += "\t<table border=1><tr>"
                 for lit in stiva:
                     solution += "<td>" + lit + "</td>"
                 solution += "</tr></table>\n"
@@ -100,4 +100,3 @@ class Problem3(Problem):
             solution += 'Operatiile necesare aplicate:\n'
         solution += operatii
         return solution
-
