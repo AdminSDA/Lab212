@@ -1,14 +1,17 @@
 from problem import Problem
 import random
 
+
 def vrvz(vr, n):  # verific daca exista macar vreun fiu nevizitat
     for i in range(n):
         if vr[i] == 0:
             return 1
     return 0
 
+
 COUNT = [10]
 afis = ""
+
 
 def afisare(k, space, fii, n):
     global afis
@@ -43,6 +46,7 @@ def afisare(k, space, fii, n):
                 afis += " "
             afis += str(k)
             afisare(fiu, space, fii, n)
+
 
 class Problem12(Problem):
     def __init__(self):
@@ -116,7 +120,8 @@ class Problem12(Problem):
         if r != radin:
             data.append(radin)
 
-        statement += "Reconstruiti un arbore oarecare, primind urmatoarea parcurgere continua in adancime a arborelui, pornind din radacina: " + ', '.join(map(str, data)) + "\n"
+        statement += "Reconstruiti un arbore oarecare, primind urmatoarea parcurgere continua in adancime a arborelui,"\
+                     "pornind din radacina: " + ', '.join(map(str, data)) + "\n"
         data = [data, n]
         super().__init__(statement, data)
 
@@ -173,7 +178,6 @@ class Problem12(Problem):
                 if nod == tata[i]:
                     solution += str(i) + "  "
                     nr_fii = nr_fii + 1
-            print(nr_fii)
             if nr_fii == 0:
                 solution += "frunza"
 
