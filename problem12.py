@@ -10,7 +10,7 @@ def vrvz(vr, n):  # verific daca exista macar vreun fiu nevizitat
 
 
 COUNT = [10]
-afis = ""   
+afis = "" 
 
 
 def afisare(k, space, fii, n):
