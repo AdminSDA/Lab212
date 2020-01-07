@@ -1,18 +1,16 @@
 from problem import Problem
 import random
-import networkx as nx
 import matplotlib.pyplot as plt
-import heapq
-# class Node:
-#     def __init__(self, )
+import networkx as nx
 
-graf = []
+import heapq
+
 class Problem41(Problem):
     def __init__(self):
+        graf =[]
         statement = 'Primind urmatorul graf, construiti arborele partial de cost minim folosind algoritmul lui Prim cu heap-uri.\n'
-        statement += "Nod1 Nod2 -> cost"
         numberOfNodes = random.randint(5, 9)
-        
+        self.ImgName = ["Graf.png", "Arbore.png"]
         for i in range(numberOfNodes):
             graf.append([])
         
@@ -39,12 +37,11 @@ class Problem41(Problem):
 
         genereazaMatrice()
         construiesteGraf()
-        for i in range(len(adiacente)):
-            for j in range(len(adiacente)):
-                print(adiacente[i][j], end=" ")
-            print("")
-        adiacente.clear()
+        for i in range(numberOfNodes):
+           statement += str(i) + ':' + str(graf[i]) + '\n'
 
+        adiacente.clear()
+        data = str(graf)
         data = str(numberOfNodes)
         listaMuchii = []
 
@@ -59,14 +56,13 @@ class Problem41(Problem):
             construiesteListaMuchii()
             for elem in listaMuchii:
                 dictionarMuchii[(elem[0], elem[1])] = elem[2]
-            #print(dictionarMuchii)
+
         
-        global afiseazaGraf
         def afiseazaGraf():
             construiesteDictionarMuchii()
             G = nx.Graph()
             nodes = [elem for elem in range(len(graf))]
-            weightedEdges = []
+   
             G.add_nodes_from(nodes)
             for i in range(len(graf)):
                 for elem in graf[i]:
@@ -77,20 +73,19 @@ class Problem41(Problem):
             nx.draw(G,pos,edge_color='black',labels={node:node for node in G.nodes()})
             nx.draw_networkx_edge_labels(G,pos,edge_labels=dictionarMuchii)
             plt.axis('off')
-            plt.savefig("Graf.png")
-            plt.show()
+            plt.savefig(self.ImgName[0])
+            #plt.savefig("Graf.png")
+            #plt.show()
             plt.close()
-    
+        afiseazaGraf()
+        data = graf
+
         super().__init__(statement, data)
 
     def solve(self):
-        data = self.data
+        graf = self.data
         solution = ""
-        solution += data
         numberOfNodes = len(graf)
-        for i in range(numberOfNodes):
-           print(i, ":",graf[i])
-        
         
         tata = [0 for i in range(numberOfNodes)]
         listaMuchiiArbore = []
@@ -98,14 +93,11 @@ class Problem41(Problem):
             vizitat = [0 for i in range(numberOfNodes)]
             coada = []
             heapq.heappush(coada, (nod, (nod, -1)))
-            pas = 1
-            e = coada[0]
             while(len(coada) != 0):
+                e = heapq.heappop(coada)
                 p = e[0]
                 v = e[1][0]
                 u = e[1][1]
-
-                #print(e, "cu v = ", v)
                 if(not vizitat[v]):
                     if (u != -1):
                         listaMuchiiArbore.append((v, u, p))
@@ -114,25 +106,28 @@ class Problem41(Problem):
                     for elem in graf[v]:
                         heapq.heappush(coada, (elem[1], (elem[0], v)))
                 
-                # print("La pasul ", pas, "coada initiala era:")
-                # print(coada)
-                e = heapq.heappop(coada)
-                # print("Dupa stergere:")
-                # print(coada)
-                # print("")
         prim(0)
-        print("Tata:")
-        for i in range(len(tata)):
-                print(tata[i], " ")
+        solution += "Idee de implemetare:\n"
+        solution += "Algorimul lui Prim foloseste un min-Heap in care pune muchiile in functie de cost.\n"
+        solution += "La primul pas considera nodul de start ca fiind solutia, adica arborele partial de cost minim.\n"
+        solution += "Pentru a adauga noduri in arbore adaugam vecinii nodului de start intr-un heap in functie de cosul muchiei.\n"
+        solution += "Ca sa adaugam muchia cu costul cel mai mic vom decapita heapul pentru a obtine muchia minima adiacenta la solutie.\n"
+        solution += "Acum consideram solutia formata din cele doua noduri si punem in heap vecinii celui de-al doilea nod.\n"
+        solution += "Repetam algoritmul pana cand vizitam toate nodurile din graf.\n"
+        solution += "La final vom obtine arborele partial de cost minim.\n"
+
         
-        print(listaMuchiiArbore)
+        solution += "\n##############################################################################################\n"
+        solution += "Rezultat:\n"
+        solution += "Arborele partial reprezentat prin vectorul de tati este:\n"
+        solution += str(tata)
         def afiseazaArbore():
             dictionarMuchiiArbore = {}
             for elem in listaMuchiiArbore:
                 dictionarMuchiiArbore[(elem[0], elem[1])] = elem[2]
             G = nx.Graph()
             nodes = [elem for elem in range(len(graf))]
-            weightedEdges = []
+  
             G.add_nodes_from(nodes)
             for elem in listaMuchiiArbore:
                 G.add_edge(elem[0], elem[1])
@@ -142,11 +137,11 @@ class Problem41(Problem):
             nx.draw(G,pos,edge_color='black',labels={node:node for node in G.nodes()})
             nx.draw_networkx_edge_labels(G,pos,edge_labels=dictionarMuchiiArbore)
             plt.axis('off')
-            plt.savefig("Arbore.png")
-            plt.show()
+            #plt.savefig("Arbore.png")
+            plt.savefig(self.ImgName[1])
+            #plt.show()
             plt.close()
 
-        afiseazaGraf()
         afiseazaArbore()
 
         return solution
