@@ -3,6 +3,7 @@
 ## Afisare graf cu matplotlib si networkx
 
 * Adaugati un atribut nou in clasa: **ImgName**
+  * atributul trebuie declarat in init();
   * ex: *self.ImgName = ['Graf.png']*
 * La salvarea figurii: *plt.savefig(self.ImgName[0])*
 * Se pot pune mai multe imagini  
