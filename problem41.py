@@ -11,6 +11,8 @@ class Problem41(Problem):
         statement = 'Primind urmatorul graf, construiti arborele partial de cost minim folosind algoritmul lui Prim cu heap-uri.\n'
         numberOfNodes = random.randint(5, 9)
         self.ImgName = ["Graf.png", "Arbore.png"]
+        self.statementPicture = 1
+        # self.solvePicture = 2
         for i in range(numberOfNodes):
             graf.append([])
         
@@ -41,16 +43,22 @@ class Problem41(Problem):
            statement += str(i) + ':' + str(graf[i]) + '\n'
 
         adiacente.clear()
-        data = str(graf)
-        data = str(numberOfNodes)
+        data = graf
+        #data = str(graf)
+        #data = str(numberOfNodes)
+        
+        super().__init__(statement, data)
+
+    def solve(self):
+        graf = self.data
+        solution = ""
+        numberOfNodes = len(graf)
         listaMuchii = []
 
         def construiesteListaMuchii():
             for i in range (len(graf)):
                 for elem in graf[i]:
                     listaMuchii.append((i, elem[0], elem[1]))
-        
-        global dictionarMuchii
         dictionarMuchii = {}
         def construiesteDictionarMuchii():
             construiesteListaMuchii()
@@ -78,14 +86,6 @@ class Problem41(Problem):
             #plt.show()
             plt.close()
         afiseazaGraf()
-        data = graf
-
-        super().__init__(statement, data)
-
-    def solve(self):
-        graf = self.data
-        solution = ""
-        numberOfNodes = len(graf)
         
         tata = [0 for i in range(numberOfNodes)]
         listaMuchiiArbore = []
@@ -117,7 +117,7 @@ class Problem41(Problem):
         solution += "La final vom obtine arborele partial de cost minim.\n"
 
         
-        solution += "\n##############################################################################################\n"
+        solution += "\n################################################################################\n"
         solution += "Rezultat:\n"
         solution += "Arborele partial reprezentat prin vectorul de tati este:\n"
         solution += str(tata)
