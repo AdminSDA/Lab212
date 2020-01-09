@@ -97,7 +97,7 @@ class Problem31(Problem):
         solution = '31. Solutia problemei: \n'
         solution += 'Idee de rezolvare: punem numerele din forma postfixata in stiva pana gasim un semn de operatie, apoi scoatem din stiva ultimele doua elemente.\n' \
                     'Primul operand este al doilea numar scos. Facem operatia respectiva si punem rezultatul in stiva.\n' \
-                    'Repetam procedeul pana in stiva ramane un singur numar, acela fiind rezultatul expresiei.\n'
+                    'Repetam procedeul pana in stiva ramane un singur numar, acela fiind rezultatul expresiei.\n\n'
         noduri = []
         noduri2 = []
         stiva = []
@@ -109,8 +109,13 @@ class Problem31(Problem):
                 noduri2.append(Nod(elem))
                 stiva.append(elem)
                 expr.append(elem)
+                solution += "<table border=1><tr>"
+                for el in stiva:
+                    solution += "<td>" + str(el) + "</td>"
+                solution += "</tr></table>\n"
 
             else:
+                solution += 'Am gasit semnul ' + elem + '\n'
                 x = expr.pop()
                 y = expr.pop()
                 expr.append('(' + str(y) + str(elem) + str(x) + ')')
@@ -118,7 +123,15 @@ class Problem31(Problem):
                 x = stiva.pop()
                 y = stiva.pop()
 
+                solution += "<table border=1><tr>"
+                for el in stiva:
+                    solution += "<td>" + str(el) + "</td>"
+                solution += "<td><strike>" + str(y) + "<strike></td>"
+                solution += "<td><strike>" + str(x) + "<strike></td>"
+                solution += "</tr></table>\n"
+
             if elem == '+':
+                solution += 'Scoatem ultimele doua numere si punem in stiva rezultatul adunarii lor'
                 r = x + y
 
                 root = Nod(r)
@@ -144,6 +157,7 @@ class Problem31(Problem):
                 stiva.append(r)
 
             if elem == '-':
+                solution += 'Scoatem ultimele doua numere si punem in stiva rezultatul scaderii lor'
                 r = y - x
 
                 root = Nod(r)
@@ -169,6 +183,7 @@ class Problem31(Problem):
                 stiva.append(r)
 
             if elem == '*':
+                solution += 'Scoatem ultimele doua numere si punem in stiva rezultatul inmultirii lor'
                 r = x * y
 
                 root = Nod(r)
@@ -193,6 +208,11 @@ class Problem31(Problem):
                 noduri2.append(root2)
                 stiva.append(r)
 
+                solution += "<table border=1><tr>"
+                for el in stiva:
+                    solution += "<td>" + str(el) + "</td>"
+                solution += "</tr></table>\n"
+
         r = stiva.pop()
         afisare(root2, 0)
         e = expr.pop()  # in lista expr mai e doar expresia
@@ -203,4 +223,3 @@ class Problem31(Problem):
         solution += "Rezultatul este " + str(r)
 
         return solution
-
