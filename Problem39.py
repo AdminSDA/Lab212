@@ -20,7 +20,7 @@ class Problem39(Problem):
             return n
 
         data = random.sample(range(100), random.randint(4, 6))
-        primes = [i for i in range(2, 11) if prim(i)]
+        primes = [i for i in range(3, 11) if prim(i)]
         statement = 'Construiti un hash folosind valorile:'
         statement += str(data) + '\n'
 
