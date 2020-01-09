@@ -1,7 +1,7 @@
 from problem import Problem
 import random
 from idlelib import tree
-from graphics import *
+#from graphics import *
 
 class Problem35(Problem):
     def __init__(self):
