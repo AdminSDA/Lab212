@@ -8,7 +8,7 @@ class Problem39(Problem):
         def prim(n):
             if n == 1:
                 return 0
-            for d in range(2, n // 2):
+            for d in range(2, (n // 2) + 1):
                 if n % d == 0:
                     return 0
             return 1
