@@ -3,7 +3,7 @@ import random
 from idlelib import tree
 from graphics import *
 
-class ProblemAVL(Problem):
+class Problem35(Problem):
     def __init__(self):
         limit = random.randint(5,10)
         data = [random.randint(0, 100) for _ in range(1, limit)]
@@ -185,5 +185,3 @@ class ProblemAVL(Problem):
         statement += '5. Arborele AVL are urmatoarea forma : ' + statement_draw_tree + '\n'
         solution = statement 
         return solution
-p = ProblemAVL()
-print(p.solve())
