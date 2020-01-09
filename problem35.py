@@ -11,7 +11,12 @@ class Problem35(Problem):
 
         statement = '1. Avem urmatoarele elemente : ' + ', '.join(map(str, data)) + '.\n'
         statement += '2. Introduceti valorile precedente intr-un AVL.\n'
-        statement += 'Idee de rezolvare :\n'
+
+        super().__init__(statement, data)
+
+    def solve(self):
+        data = self.data
+        statement = 'Idee de rezolvare :\n'
         statement +=  '= inserarea se bazeaza pe cea de la BST, cu anumite modificări;\n'
         statement +=  '= după ce am inserat un element în BST trebuie să parcurgem arborele începând de la noul nod adăugat;\n'
         statement +=  '= parcurgem arborele până găsim un nod care are factorul de echilibru mai mic decât -1 sau mai mare decât 1;\n'
@@ -25,12 +30,6 @@ class Problem35(Problem):
         statement +=  '= vom avea patru functii, fiecare va reprezenta o rotație ;\n'
         statement +=  '= după aplicarea rotației BST-ul devine echilibrat, deci devine un AVL;\n'
         statement +=  '= reluam algoritmul pentru următoarea valoarea introdusă\n'
-
-        super().__init__(statement, data)
-
-    def solve(self):
-        data = self.data
-        statement = self.statement
 
         preorder_list = list()
         inorder_list = list()
