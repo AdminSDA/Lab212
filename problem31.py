@@ -131,7 +131,7 @@ class Problem31(Problem):
                 solution += "</tr></table>\n"
 
             if elem == '+':
-                solution += 'Scoatem ultimele doua numere si punem in stiva rezultatul adunarii lor'
+                solution += 'Scoatem ultimele doua numere si punem in stiva rezultatul adunarii lor\n'
                 r = x + y
 
                 root = Nod(r)
@@ -157,7 +157,7 @@ class Problem31(Problem):
                 stiva.append(r)
 
             if elem == '-':
-                solution += 'Scoatem ultimele doua numere si punem in stiva rezultatul scaderii lor'
+                solution += 'Scoatem ultimele doua numere si punem in stiva rezultatul scaderii lor\n'
                 r = y - x
 
                 root = Nod(r)
@@ -183,7 +183,7 @@ class Problem31(Problem):
                 stiva.append(r)
 
             if elem == '*':
-                solution += 'Scoatem ultimele doua numere si punem in stiva rezultatul inmultirii lor'
+                solution += 'Scoatem ultimele doua numere si punem in stiva rezultatul inmultirii lor\n'
                 r = x * y
 
                 root = Nod(r)
