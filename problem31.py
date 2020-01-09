@@ -52,10 +52,10 @@ class Problem31(Problem):
         nr = random.randint(4, 8)  # nr. de operanzi (frunze)
         s = nr - 1  # nr. de operatii (noduri interne)
         semne = ['+', '-', '*']
-        data.append(random.randrange(1, 10))
-        data.append(random.randrange(1, 10))
+        data.append(random.randrange(2, 10))
+        data.append(random.randrange(2, 10))
         while data[0] == data[1]:
-            data[1] = random.randrange(1, 10)
+            data[1] = random.randrange(2, 10)
         nr = nr - 2  # primele doua elemente trebuie sa fie numere
         numere = random.sample(range(1, 10), nr)
         elemente = semne + numere
@@ -66,7 +66,7 @@ class Problem31(Problem):
                 if data[-1] == '+' or data[-1] == '-' or data[-1] == '*':
                     s = s - 1
                     if not semn(data):
-                        data[-1] = random.randrange(1, 10)
+                        data[-1] = random.randrange(2, 10)
                         s += 1
                         nr -= 1
                 else:
@@ -75,7 +75,7 @@ class Problem31(Problem):
                         ok = 1
                         for i in range(len(data) - 1):
                             if data[i] == data[len(data)-1]:
-                                data[len(data) - 1] = random.randrange(1, 10)
+                                data[len(data) - 1] = random.randrange(2, 10)
                                 ok = 0
                     nr = nr - 1
                 continue
