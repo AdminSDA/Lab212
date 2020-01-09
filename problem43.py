@@ -112,7 +112,7 @@ class Problem43(Problem):
                 reden[muchii[i]] = costuri[i]
             # print(reden)
             nx.draw_networkx_edge_labels(G, pos, edge_labels=reden, font_color='red')
-            plt.savefig(self.ImgName)
+            plt.savefig(self.ImgName[0])
             plt.axis('off')
             # plt.show()
 
