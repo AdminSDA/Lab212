@@ -86,6 +86,7 @@ class Problem42(Problem):
         statement = "Primind urmatorul graf, construiti arborele partial de cost minim (Kruskal):\n\n"
         data = []
         self.ImgName = ["Graf.png", "APM.png"]
+        self.statementPicture=1
         global graph
 
         self.V = random.randint(6, 9)  # Generez un numar de varfuri intre 6 si 9

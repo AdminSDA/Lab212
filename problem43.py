@@ -67,7 +67,7 @@ class Problem43(Problem):
 
     def __init__(self):
         self.nr_vf = random.randint(5, 7)
-        self.ImgName = "graph.png"
+        self.ImgName = ["graph.png"]
 
         construct_graf(self.nr_vf)
         statement = "43 (DC) Primind urmatorul graf (neorientat):\n"
