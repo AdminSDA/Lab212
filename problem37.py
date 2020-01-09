@@ -32,7 +32,7 @@ class Problem37(Problem):
         # data=[];
         self.solution = "";
         # se va alege un camp din heap-ul stocat
-        fIn = open("Hash.b","rb");
+        fIn = open("Hash4.b","rb");
         dict = pickle.load(fIn)
         # ponderi = [('a',28),('r',14),('d',12),('e',20),('n',11),('t',15)];
         # ~ list = ['a','r','d','e','n','t'];
