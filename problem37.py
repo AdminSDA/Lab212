@@ -59,9 +59,9 @@ class Problem37(Problem):
         
         
         # se iau cuvinte si se codifica, unele codificari pot fi modificate pt a fi gresite
-        cVariante = (self.codareHuffman(random.choice(dict[Char])),     # rearendat
-        self.wrongCode(self.codareHuffman(random.choice(dict[Char]))),                  # neaderent
-        self.wrongCode(self.codareHuffman(random.choice(dict[Char]))) );                        # arrent
+        cVariante = (self.codareHuffman(random.choice(dict[Char][:-1])),     # rearendat
+        self.wrongCode(self.codareHuffman(random.choice(dict[Char][:-1]))),                  # neaderent
+        self.wrongCode(self.codareHuffman(random.choice(dict[Char][:-1]))) );                        # arrent
         data = (ponderi,bCuvant,bVariante,cVariante);
         statement = "Primiti urmatoarele litere cu ponderi:\n";
         statement += str(ponderi);
@@ -195,14 +195,14 @@ class Problem37(Problem):
             # word = fIn.readline();
             # facem dictionarul cuvantului
             bifat = True;
-            for c in word[:-1]:
+            for c in word[1:-1]:
                 if c not in self.codes:
                     bifat = False;
                     break;
-            if(bifat and word[:-1]!=''):
+            if(bifat and word[1:-1]!=''):
                 # print(word);
                 cuvGasite +=1;
-                cuvinte.append(word[:-1]);
+                cuvinte.append(word[1:-1]);
             n+=1;
         if(len(cuvinte)):
             self.record("Cuvinte gasite:");
