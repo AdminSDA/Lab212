@@ -17,13 +17,21 @@ class Problem41(Problem):
             graf.append([])
         
         adiacente = [[0 for x in range(numberOfNodes)] for y in range(numberOfNodes)]
-         
+        zero = [0 for x in range(numberOfNodes)]
+        def umpleLinia(lin):
+            for elem in range (numberOfNodes):
+                if (elem != lin):
+                    adiacente[lin][elem] = random.randint(0, 2) 
+
         def genereazaMatrice():
             for i in range(numberOfNodes):
                 for j in range(i + 1, numberOfNodes):
                     muchie = random.randint(0, 2)
                     adiacente[i][j] = muchie
                     adiacente[j][i] = muchie
+                if (zero == [adiacente[i]]):
+                    umpleLinia(i)
+
             for i in range(numberOfNodes):
                 for j in range(i + 1, numberOfNodes):
                     if adiacente[i][j]:
@@ -143,6 +151,5 @@ class Problem41(Problem):
             plt.close()
 
         afiseazaArbore()
-
+        
         return solution
-
