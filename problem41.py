@@ -9,51 +9,62 @@ class Problem41(Problem):
     def __init__(self):
         graf =[]
         statement = 'Primind urmatorul graf, construiti arborele partial de cost minim folosind algoritmul lui Prim cu heap-uri.\n'
-        numberOfNodes = random.randint(5, 9)
+        self.numberOfNodes = random.randint(5, 7)
         self.ImgName = ["Graf.png", "Arbore.png"]
         self.statementPicture = 1
-        # self.solvePicture = 2
-        for i in range(numberOfNodes):
-            graf.append([])
         
-        adiacente = [[0 for x in range(numberOfNodes)] for y in range(numberOfNodes)]
-        zero = [0 for x in range(numberOfNodes)]
-        def umpleLinia(lin):
-            for elem in range (numberOfNodes):
-                if (elem != lin):
-                    adiacente[lin][elem] = random.randint(0, 2) 
-
+        adiacente = [[0 for x in range(self.numberOfNodes)] for y in range(self.numberOfNodes)]
+        vizitat = [0 for x in range(self.numberOfNodes)]
+        
+        def dfs(vf):
+            vizitat[vf] = 1
+            for i in range(self.numberOfNodes):
+                if (adiacente[vf][i] == 1 and vizitat[i] == 0):
+                    dfs(i)
+        
         def genereazaMatrice():
-            for i in range(numberOfNodes):
-                for j in range(i + 1, numberOfNodes):
-                    muchie = random.randint(0, 2)
+            n = self.numberOfNodes
+            for i in range(self.numberOfNodes):
+                nrMuchii = 0
+                for j in range(i + 1, self.numberOfNodes):
+                    muchie = random.randint(0, 1)
+                    if (muchie):
+                        nrMuchii += 1
                     adiacente[i][j] = muchie
                     adiacente[j][i] = muchie
-                if (zero == [adiacente[i]]):
-                    umpleLinia(i)
-
-            for i in range(numberOfNodes):
-                for j in range(i + 1, numberOfNodes):
-                    if adiacente[i][j]:
-                        cost = random.randint(20, 50)
-                        adiacente[i][j] = cost
-                        adiacente[j][i] = cost
+            dfs(0)
+            for i in range(len(vizitat)):
+                if (vizitat[i] == 0):
+                    dfs(i)
+                    adiacente[0][i] = 1
+                    adiacente[i][0] = 1
+            for i in range(self.numberOfNodes):
+                graf.append([])
+                for j in range(i + 1, self.numberOfNodes):
+                    if vizitat[i]:
+                        if adiacente[i][j]:
+                            cost = random.randint(5, 15)
+                            adiacente[i][j] = cost
+                            adiacente[j][i] = cost
+                    else:
+                        adiacente[i][j] = 0
+                        adiacente[j][i] = 0
+                        n -= 1
+            self.numberOfNodes = n
 
         def construiesteGraf():
-            for i in range(numberOfNodes):
-                for j in range(numberOfNodes):
+            for i in range(self.numberOfNodes):
+                for j in range(self.numberOfNodes):
                     if adiacente[i][j]:
                         graf[i].append((j, adiacente[i][j]))
 
         genereazaMatrice()
         construiesteGraf()
-        for i in range(numberOfNodes):
+        for i in range(self.numberOfNodes):
            statement += str(i) + ':' + str(graf[i]) + '\n'
 
         adiacente.clear()
         data = graf
-        #data = str(graf)
-        #data = str(numberOfNodes)
         
         super().__init__(statement, data)
 
@@ -101,8 +112,12 @@ class Problem41(Problem):
             vizitat = [0 for i in range(numberOfNodes)]
             coada = []
             heapq.heappush(coada, (nod, (nod, -1)))
+            pas = 1
+            sol = ""
             while(len(coada) != 0):
                 e = heapq.heappop(coada)
+                sol += f"La pasul {pas} am scos din heap {e}. "
+                sol += f"Dupa stergere, heapul este: {coada}\n\n"
                 p = e[0]
                 v = e[1][0]
                 u = e[1][1]
@@ -113,8 +128,10 @@ class Problem41(Problem):
                     tata[v] = u
                     for elem in graf[v]:
                         heapq.heappush(coada, (elem[1], (elem[0], v)))
+                pas += 1
+            return sol
                 
-        prim(0)
+        sol = prim(0)
         solution += "Idee de implemetare:\n"
         solution += "Algorimul lui Prim foloseste un min-Heap in care pune muchiile in functie de cost.\n"
         solution += "La primul pas considera nodul de start ca fiind solutia, adica arborele partial de cost minim.\n"
@@ -123,6 +140,9 @@ class Problem41(Problem):
         solution += "Acum consideram solutia formata din cele doua noduri si punem in heap vecinii celui de-al doilea nod.\n"
         solution += "Repetam algoritmul pana cand vizitam toate nodurile din graf.\n"
         solution += "La final vom obtine arborele partial de cost minim.\n"
+
+        solution += "Algoritm:\n"
+        solution += sol
 
         
         solution += "\n################################################################################\n"
