@@ -11,19 +11,25 @@ costuri = []
 muchii = []
 anterior = {}
 graf = {}
+s = []
+ss = ""
 
 
 def dijkstra(graph, nod_start):
+    global ss
     global distante
     global anterior
     distante = {nod: float('infinity') for nod in graph}
-    anterior = {nod: -1 for nod in graph}
+    anterior = {nod: None for nod in graph}
     distante[nod_start] = 0  # distanta[A] = 0
     anterior[nod_start] = nod_start
     pq = [(0, nod_start)]  # priority queue #deci intai adaug 0,A
     while len(pq) > 0:
-        distanta_curenta, nod_curent = heapq.heappop(pq)  # extragem de fiecare data nodul cu distanta minima
+        distanta_curenta, nod_curent = heapq.heappop(pq)
+        ss += "Extragem din heap " + str(distanta_curenta) + " " + str(nod_curent) + "\n"
+        # extragem de fiecare data nodul cu distanta minima
 
+        s.append([distanta_curenta, nod_curent])
 
         for vecin, cost in graph[nod_curent].items():  # fiecare vecin si costul
             distanta = distanta_curenta + cost  # calculam noua distanta
@@ -34,6 +40,8 @@ def dijkstra(graph, nod_start):
                 distante[vecin] = distanta
                 anterior[vecin] = nod_curent
                 heapq.heappush(pq, (distanta, vecin))
+                ss += "Adaugam in heap " + str(distanta) + " " + str(vecin) + "\n"
+                ss += "Actualizam distantele: " + str(distante) + "\n"
 
 
 def construct_graf(nr_noduri):
@@ -64,42 +72,36 @@ def construct_graf(nr_noduri):
 
 
 class Problem43(Problem):
+    global ss
 
     def __init__(self):
         self.nr_vf = random.randint(5, 7)
-        self.ImgName = ["graph.png"]
-        self.statementPicture = 1
+        self.ImgName = ["graf43.png"]
+
         construct_graf(self.nr_vf)
         statement = "43 (DC) Primind urmatorul graf (neorientat):\n"
-        statement += str(graf) + "\n"
+        # statement += str(graf) + "\n"
 
         statement += "Lista de muchii:\n"
         for i in range(len(lista_muchii)):
             statement += str(lista_muchii[i]) + "\n"
 
-        statement += "Aplicati algoritmul lui Dijkstra (pe heap-uri) pornind din nodul 1 pentru a gasi distanta minima"
+        statement += "Aplicati algoritmul lui Dijkstra (pe heap-uri) pornind din nodul A pentru a gasi distanta minima"
         statement += "de la acesta catre oricare alt nod din graf.\n"
-        statement += "\nIdee de rezolvare:\n"
-        statement += "Construim un dictionar pentru distante si atribuim infinit tuturor nodurilor, cu exceptia nodului de start, care va primi 0\n"
-        statement += "Construim o coada de prioritate/heap in care adaugam initial nodul de start cu distanta 0. \n" \
-                     "Calculam distantele de la nodul de start la toti vecinii sai, pe care ii adaugam in heap, cu distantele respective.\n" \
-                     "Extragem din heap nodul cu distanta cea mai mica si verificam daca distantele de la nodul de start prin\n" \
-                     "acest nod sunt mai mici decat ceea ce aveam deja, caz in care actualizam dictionarul de distante si adaugam" \
-                     "in heap distantele mai bune si nodurile corespunzatoare.\n" \
-                     "Repetam ultimul pas pana coada de prioritate este vida\n"
+
         data = []
         super().__init__(statement, data)
 
     def solve(self):
-        n = self.nr_vf
 
         def afisareGraf(nr_noduri):
             G = nx.Graph()
             for i in range(nr_noduri):
+                G.add_node(str(chr(65 + i)))
+
+            for i in range(nr_noduri):
                 for j in range(i + 1, nr_noduri):
                     if matrice[i][j] == 1:
-                        G.add_node(str(chr(65 + i)))
-                        G.add_node(str(chr(65 + j)))
                         edge = (str(chr(65 + i)), str(chr(65 + j)))
                         muchii.append(edge)
                         G.add_edge(*edge)
@@ -116,13 +118,28 @@ class Problem43(Problem):
             plt.axis('off')
             # plt.show()
 
+        n = self.nr_vf
+        solution = "\nIdee de rezolvare:\n"
+        solution += "Construim un dictionar pentru distante si atribuim infinit tuturor nodurilor, cu exceptia nodului de start, care va primi 0\n"
+        solution += "Construim un heap in care adaugam initial nodul de start cu distanta 0. \n" \
+                     "Calculam distantele de la nodul de start la toti vecinii sai, pe care ii adaugam in heap, cu distantele respective.\n" \
+                     "Extragem din heap nodul cu distanta cea mai mica si verificam daca distantele de la nodul de start prin\n" \
+                     "acest nod sunt mai mici decat ceea ce aveam deja, caz in care actualizam dictionarul de distante si adaugam\n" \
+                     "in heap nodurile si distantele corespunzatoare.\n" \
+                     "Repetam ultimul pas cat timp heap-ul e nevid\n"
+        solution += "\n"
         dijkstra(graf, 'A')
+        solution += ss
         afisareGraf(n)
-        solution = "Distanta minima de la nodul A catre oricare alt nod din graf este: \n"
+        solution += "Distanta minima de la nodul A catre oricare alt nod din graf este: \n"
         solution += str(distante) + "\n"
         solution += "Nodul anterior fiecarui nod este:\n"
         solution += str(anterior)
         return solution
+
+
+
+
 
 # p = Problem43()
 # print(p.statement)
