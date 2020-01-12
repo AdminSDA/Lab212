@@ -14,8 +14,8 @@ class Problem30(Problem):
         random.shuffle(data)
         
         data="".join([chr(i) for i in data])
-        statement = "Primiti o lista dublu inlantuita care contine elementele: " + "".join([i+" " for i in data]) +". Gasiti numarul minim de "
-        statement += "litere (si literele) care ar trebui introduse pentru ca lista sa devina palindromica."
+        statement = "Primiti un sir: " + "".join([i+" " for i in data]) +". Gasiti numarul minim de "
+        statement += "litere (si literele) care ar trebui introduse pentru ca sirul sa devina palindrom."
         super().__init__(statement, data)
 
     def solve(self):
@@ -26,17 +26,14 @@ class Problem30(Problem):
         dp=[[0 for i in range(n)] for i in range(n)]
         sol=[[sir[i] if i==j else "" for i in range(n)] for j in range(n)]
 
-        solution="Idee de rezolvare: \nVom crea doua matrici, una in care vom calcula numarul minim de insertii, "
-        solution+="folosind recurenta: \n\n"
-        solution+="dp[i][j]=  dp[i+1][j-1], daca sir[i]==sir[j]\n"
-        solution+="           1+min(dp[i+1][j],dp[i][j-1]), daca sir[i]!=sir[j]\n"
-        solution+="iar cealalta, in care vom construi treptat palindromul, dupa regula:\n\n"
-        solution+="sol[i][j]=  sir[i]+sol[i+1][j-1]+sir[j], daca sir[i]==sir[j]\n"
-        solution+="            sir[i]+sol[i+1][j]+sir[i], daca sir[i]!=sir[j] si dp[i+1][j]<dp[i][j-1]\n"
-        solution+="            sir[j]+sol[i][j-1]+sir[j], daca sir[i]!=sir[j] si dp[i+1][j]>=dp[i][j-1]\n\n"
-        solution+="La final, in ambele matrici, in coltul din dreapta sus, vom avea rezultatele: in dp vom avea numarul "
-        solution+="minim de insertii, iar in sol vom avea palindromul care rezulta in urma acestor insertii "
-        solution+="(palindromul nu este unic, se poate schimba inversand conditiile din ultimele 2 ramuri de la construirea matricii sol)"
+        solution="Idee de rezolvare: \n\n"
+        solution+="Vom crea doua matrici, una care va contine numarul minim de insertii pe pozitia i,j pentru subsirul [i:j], iar cealalta care va contine palindromul creat prin numar minim de insertii pentru subsirul [i:j], pe pozitia i,j (doar deasupra diagonalei principale, matrici inferior triunghiulare)."
+        solution+="\n\nMatricea cu numarul de insertii:\nParcurgem diagonalele paralele cu diagonala principala, si pentru subsirul [i:j] punem in matrice la pozitia i,j numarul minim de insertii necesar pentru a crea un palindrom."
+        solution+="Luam capetele subsirului, le comparam: daca sunt egale, atunci nu avem nevoie de insertii, subsirul [i:j] are nevoie de tot atatea insertii ca subsirul [i+1:j-1]; in caz contrar, subsirul [i:j] are nevoie cu o insertie mai mult decat "
+        solution+="minimul dintre numarul de insertii necesar subsirului [i:j-1], respectiv [i+1:j]. "
+        solution+="\n\nMatricea cu palindroame pentru orice subsir [i:j]:\n"
+        solution+="Matricea e goala la inceput, cu exceptia diagonalei principale, care contine literele din sir. Parcurgem diagonalele paralele cu "
+        solution+="diagonala principala, si construim palindromul pentru subsirul [i:j], folosindu-ne de ce avem in stanga si dedesubt."
 
         for i in range(1,n):
             for j in range(n-i):
@@ -53,8 +50,21 @@ class Problem30(Problem):
                     else:
                         dp[left][right]=1+dp[left][right-1]
                         sol[left][right]=sir[right]+sol[left][right-1]+sir[right]
-                
 
+        
+        solution+="\n\n"
+
+        for i in range(n):
+            for j in range(n):
+                solution+=" "*(len(sol[0][j])-len(sol[i][j]))+sol[i][j]+" "
+            solution+="\n"
+
+        solution+="\n"
+
+        for i in range(n):
+            for j in range(n):
+                solution+=str(dp[i][j])+" "
+            solution+="\n"
 
         solution+="\n\nNumarul minim de insertii este "+str(dp[0][n-1])+", iar palindromul rezultat este "+sol[0][n-1]
 
