@@ -20,7 +20,7 @@ class Problem39(Problem):
             return n
 
         data = random.sample(range(100), random.randint(4, 6))
-        primes = [i for i in range(3, 11) if prim(i)]
+        primes = [i for i in range(7, 20) if prim(i)]
         statement = 'Construiti un hash folosind valorile:'
         statement += str(data) + '\n'
 
@@ -91,9 +91,13 @@ class Problem39(Problem):
             while hash[(x + i) % nb] is not None:
                 i += 1
             hash[(x + i) % nb] = x
-        solution += str(hash) + '\n\n'
 
-
+        for i in range(0, len(hash)):
+            if(hash[i] is None):
+                solution += str(i) + ' : ' + ' ' + '\n'
+            else:
+                solution += str(i) + ' : ' + str(hash[i]) + '\n'
+        solution += '\n\n'
         """
             c)quadratic probing: 
                 h(x, i) = (x + ai^2 + bi + c ) % prim
@@ -106,7 +110,12 @@ class Problem39(Problem):
             while hash[(x + a * (i ^ 2) + b * i + c) % nc] is not None:
                 i += 1
             hash[(x + a * (i ^ 2) + b * i + c) % nc] = x
-        solution += str(hash) + '\n\n'
+        for i in range(0, len(hash)):
+            if (hash[i] is None):
+                solution += str(i) + ' : ' + ' ' + '\n'
+            else:
+                solution += str(i) + ' : ' + str(hash[i]) + '\n'
+        solution += '\n\n'
 
 
         """ 
@@ -121,6 +130,11 @@ class Problem39(Problem):
             while hash[(x % n1 + i * (n2 - x % n2)) % nd] is not None:
                 i += 1
             hash[(x % n1 + i * (n2 - x % n2)) % nd] = x
-        solution += str(hash) + '\n\n'
+        for i in range(0, len(hash)):
+            if (hash[i] is None):
+                solution += str(i) + ' : ' + ' ' + '\n'
+            else:
+                solution += str(i) + ' : ' + str(hash[i]) + '\n'
+        solution += '\n\n'
 
         return solution
