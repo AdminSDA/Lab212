@@ -4,7 +4,7 @@ from random import randint
 from problem import Problem
 
 solution = ""
-
+statement = ""
 
 class Node(object):
     def __init__(self, key):
@@ -99,15 +99,16 @@ class AVL(object):
             self.printTree2(pct.right, indent, True)
 
     def printTree(self, pct, indent, last):
+        global statement
         if pct != None:
-            sys.stdout.write(indent)
+            statement += indent
             if last:
-                sys.stdout.write("R----")
+                statement += "R----"
                 indent += "     "
             else:
-                sys.stdout.write("L----")
+                statement += "L----"
                 indent += "|    "
-            print(pct.key)
+            statement += str(pct.key) + "\n"
             self.printTree(pct.left, indent, False)
             self.printTree(pct.right, indent, True)
 
@@ -151,13 +152,14 @@ class AVL(object):
         return root
 
 
-print("Arborele creat:")
+
 myTree = AVL()
 data = []
 
 
 class problem33(Problem):
     def __init__(self):
+        global statement
         statement = "Avem secventa:"
         for i in range(8):
             data.append(randint(1, 100))
@@ -165,7 +167,7 @@ class problem33(Problem):
         root = None
         for j in data:
             root = myTree.insertNode(root, j)
-        statement+="\nPe baza secventei vom crea un AVL"
+        statement+="\nPe baza secventei vom crea un AVL" + "\n"
         myTree.printTree(root, "", True)
         statement+="\nAcest arbore va fi dezechilibrat prin rotatii random ale unor noduri alese tot aleatoriu"
         statement+="\nIn cazul in care nodul ales nu are un vecin la stanga sau dreapta, rotatiile nu vor avea loc si se va alege alt nod\n"
@@ -211,7 +213,4 @@ class problem33(Problem):
         return solution
 
 
-p = problem33()
-print(p.statement)
-print(p.solve())
 
