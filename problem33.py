@@ -156,7 +156,7 @@ myTree = AVL()
 data = []
 
 
-class Problem33(Problem):
+class problem33(Problem):
     def __init__(self):
         statement = "Avem secventa:"
         for i in range(8):
@@ -165,7 +165,10 @@ class Problem33(Problem):
         root = None
         for j in data:
             root = myTree.insertNode(root, j)
+        statement+="\nPe baza secventei vom crea un AVL"
         myTree.printTree(root, "", True)
+        statement+="\nAcest arbore va fi dezechilibrat prin rotatii random ale unor noduri alese tot aleatoriu"
+        statement+="\nIn cazul in care nodul ales nu are un vecin la stanga sau dreapta, rotatiile nu vor avea loc si se va alege alt nod\n"
         self.root = root
 
         super().__init__(statement, data)
@@ -208,7 +211,7 @@ class Problem33(Problem):
         return solution
 
 
-# ~ p = problem33()
-# ~ print(p.statement)
-# ~ print(p.solve())
+p = problem33()
+print(p.statement)
+print(p.solve())
 
