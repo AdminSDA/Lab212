@@ -20,7 +20,27 @@ class AVL(object):
             return Node(key)
         elif key < root.key:
             root.left = self.insertNode(root.left, key)
-        else:
+        else:il punem in vectorul de solutii si trecem la urmatorul element din data; daca nu, scoatem elementul din Q2 si il adaugam la final in Q1. Pentru optimizare, putem incepe algoritmul dupa adaugarea primului element in coada Q1, nu este nevoie sa adaugam intai toate elementele pentru ca algoritmul sa functioneze, insa avem nevoie de verificari suplimentare pentru a nu adauga/sterge elemente inexistente(nule) din cozi.<br><br>Secventa finala este: f 1 u I_1 j I_2 o 1 c 1 i 1 v 1 d 1 r I_1 1 2 1 2 1 2 I_2 I_2 1 2 I_2 I_2 I_1 I_2 <br><strike>f</strike> <strike>u</strike> <strike>j</strike> <strike>o</strike> <strike>c</strike> <strike>i</strike> <strike>v</strike> <strike>d</strike> <strike>r</strike> <strike>j</strike> <strike>o</strike> <strike>c</strike> <strike>r</strike> <br><strike>f</strike> <strike>j</strike> <strike>o</strike> <strike>c</strike> <strike>i</strike> <strike>v</strike> <strike>r</strike> <strike>j</strike> <strike>o</strike> <strike>c</strike> <br>
+</pre>
+<pre id="1" onclick="afisare(1)">
+
+Problem3
+ Idee de rezolvare: Selectam primul element din vectorul b. Luam fiecare element din vectorul a si il introducem in stiva.
+Cat timp stiva nu este goala si ultimul element din stiva este egal cu elementul curent din b, atunci il scoatem, afisam p si trecem mai departe in b.
+	Adaugam 4 la operatii si adaugam elementul 4 in stiva
+	<table border=1><tr><td>4</td></tr></table>
+	Adaugam p la operatii si scoatem elementul 4 din stiva
+	<table border=1><tr><td><strike>4</strike> </td></tr></table>
+	Adaugam 2 la operatii si adaugam elementul 2 in stiva
+	<table border=1><tr><td>2</td></tr></table>
+	Adaugam 5 la operatii si adaugam elementul 5 in stiva
+	<table border=1><tr><td>2</td><td>5</td></tr></table>
+	Adaugam p la operatii si scoatem elementul 5 din stiva
+	<table border=1><tr><td>2</td><td><strike>5</strike> </td></tr></table>
+	Adaugam 3 la operatii si adaugam elementul 3 in stiva
+	<table border=1><tr><td>2</td><td>3</td></tr></table>
+	Adaugam p la operatii si scoatem elementul 3 din stiva
+	
             root.right = self.insertNode(root.right, key)
         root.height = 1 + max(self.Height(root.left), self.Height(root.right))
 
@@ -156,10 +176,30 @@ myTree = AVL()
 data = []
 
 
-class problem33(Problem):
+class Problem33(Problem):
     def __init__(self):
         statement = "Avem secventa:"
-        for i in range(8):
+        for i in range(8):il punem in vectorul de solutii si trecem la urmatorul element din data; daca nu, scoatem elementul din Q2 si il adaugam la final in Q1. Pentru optimizare, putem incepe algoritmul dupa adaugarea primului element in coada Q1, nu este nevoie sa adaugam intai toate elementele pentru ca algoritmul sa functioneze, insa avem nevoie de verificari suplimentare pentru a nu adauga/sterge elemente inexistente(nule) din cozi.<br><br>Secventa finala este: f 1 u I_1 j I_2 o 1 c 1 i 1 v 1 d 1 r I_1 1 2 1 2 1 2 I_2 I_2 1 2 I_2 I_2 I_1 I_2 <br><strike>f</strike> <strike>u</strike> <strike>j</strike> <strike>o</strike> <strike>c</strike> <strike>i</strike> <strike>v</strike> <strike>d</strike> <strike>r</strike> <strike>j</strike> <strike>o</strike> <strike>c</strike> <strike>r</strike> <br><strike>f</strike> <strike>j</strike> <strike>o</strike> <strike>c</strike> <strike>i</strike> <strike>v</strike> <strike>r</strike> <strike>j</strike> <strike>o</strike> <strike>c</strike> <br>
+</pre>
+<pre id="1" onclick="afisare(1)">
+
+Problem3
+ Idee de rezolvare: Selectam primul element din vectorul b. Luam fiecare element din vectorul a si il introducem in stiva.
+Cat timp stiva nu este goala si ultimul element din stiva este egal cu elementul curent din b, atunci il scoatem, afisam p si trecem mai departe in b.
+	Adaugam 4 la operatii si adaugam elementul 4 in stiva
+	<table border=1><tr><td>4</td></tr></table>
+	Adaugam p la operatii si scoatem elementul 4 din stiva
+	<table border=1><tr><td><strike>4</strike> </td></tr></table>
+	Adaugam 2 la operatii si adaugam elementul 2 in stiva
+	<table border=1><tr><td>2</td></tr></table>
+	Adaugam 5 la operatii si adaugam elementul 5 in stiva
+	<table border=1><tr><td>2</td><td>5</td></tr></table>
+	Adaugam p la operatii si scoatem elementul 5 din stiva
+	<table border=1><tr><td>2</td><td><strike>5</strike> </td></tr></table>
+	Adaugam 3 la operatii si adaugam elementul 3 in stiva
+	<table border=1><tr><td>2</td><td>3</td></tr></table>
+	Adaugam p la operatii si scoatem elementul 3 din stiva
+	
             data.append(randint(1, 100))
         statement += str(data)
         root = None
@@ -208,7 +248,27 @@ class problem33(Problem):
         return solution
 
 
-p = problem33()
-print(p.statement)
-print(p.solve())
+#p = Problem33()
+#print(p.statement)
+#il punem in vectorul de solutii si trecem la urmatorul element din data; daca nu, scoatem elementul din Q2 si il adaugam la final in Q1. Pentru optimizare, putem incepe algoritmul dupa adaugarea primului element in coada Q1, nu este nevoie sa adaugam intai toate elementele pentru ca algoritmul sa functioneze, insa avem nevoie de verificari suplimentare pentru a nu adauga/sterge elemente inexistente(nule) din cozi.<br><br>Secventa finala este: f 1 u I_1 j I_2 o 1 c 1 i 1 v 1 d 1 r I_1 1 2 1 2 1 2 I_2 I_2 1 2 I_2 I_2 I_1 I_2 <br><strike>f</strike> <strike>u</strike> <strike>j</strike> <strike>o</strike> <strike>c</strike> <strike>i</strike> <strike>v</strike> <strike>d</strike> <strike>r</strike> <strike>j</strike> <strike>o</strike> <strike>c</strike> <strike>r</strike> <br><strike>f</strike> <strike>j</strike> <strike>o</strike> <strike>c</strike> <strike>i</strike> <strike>v</strike> <strike>r</strike> <strike>j</strike> <strike>o</strike> <strike>c</strike> <br>
+</pre>
+<pre id="1" onclick="afisare(1)">
+
+Problem3
+ Idee de rezolvare: Selectam primul element din vectorul b. Luam fiecare element din vectorul a si il introducem in stiva.
+Cat timp stiva nu este goala si ultimul element din stiva este egal cu elementul curent din b, atunci il scoatem, afisam p si trecem mai departe in b.
+	Adaugam 4 la operatii si adaugam elementul 4 in stiva
+	<table border=1><tr><td>4</td></tr></table>
+	Adaugam p la operatii si scoatem elementul 4 din stiva
+	<table border=1><tr><td><strike>4</strike> </td></tr></table>
+	Adaugam 2 la operatii si adaugam elementul 2 in stiva
+	<table border=1><tr><td>2</td></tr></table>
+	Adaugam 5 la operatii si adaugam elementul 5 in stiva
+	<table border=1><tr><td>2</td><td>5</td></tr></table>
+	Adaugam p la operatii si scoatem elementul 5 din stiva
+	<table border=1><tr><td>2</td><td><strike>5</strike> </td></tr></table>
+	Adaugam 3 la operatii si adaugam elementul 3 in stiva
+	<table border=1><tr><td>2</td><td>3</td></tr></table>
+	Adaugam p la operatii si scoatem elementul 3 din stiva
+	print(p.solve())
 
