@@ -68,9 +68,10 @@ class Problem3(Problem):
         stiva = []
         solution = " "
         solution += "Idee de rezolvare: Selectam primul element din vectorul b. " \
-                    "Luam fiecare element din vectorul a si il introducem in stiva.\n" \
+                    "Punem elementele din vectorul a in stiva pana gasim un numar egal cu cel selectat din vectorul b.\n" \
                     "Cat timp stiva nu este goala si ultimul element din stiva este egal cu elementul curent din b, " \
-                    "atunci il scoatem, afisam p si trecem mai departe in b.\n"
+                    "scoatem ultimul element din stiva, afisam p si trecem mai departe in b. \n" \
+                    "Se repeta procedeul pana cand toate elementele lui a au fost introduse in stiva.\n"
         i = 0
         for lit in a:
             s.append(lit)
